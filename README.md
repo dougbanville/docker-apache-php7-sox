@@ -12,6 +12,10 @@ Usage
 ------
 
 ```
+docker build -t bylexus/apache-php7:latest .
+```
+
+```
 $ docker run -d -P bylexus/apache-php7
 ```
 

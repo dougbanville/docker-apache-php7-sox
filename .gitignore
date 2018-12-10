@@ -1,3 +1,5 @@
 html/vendor
+html/transcoder/audio/*
 *.mp3
 *.mp4
+html/transcoder/config.php
