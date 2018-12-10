@@ -2,6 +2,7 @@
 require("config.php");
 require("../functions.php");
 
+$audioId = $_GET["audioId"];
 
 $start =$_GET["start"];
 
@@ -35,11 +36,12 @@ $gainFile = "audio/gain".time().".mp3";
 saveFileFromUrl($url,$fileName);
 
 //create the reponse
-$json = array('id' => 1000, 'afUrl' => $url, 'fileName' => $fileName, 'duration' => $duration);
+$json = array('audioId'=>$audioId,'fileName' => $fileName, 'outputFile' =>$outputFile, 'audioIn' => $audioIn, 'duration' => $duration);
 
 echo $_GET['callback'] . '('.json_encode($json).')';// Actual response that will be sent to the user
 //run it as exec the client can go about their business
-exec("nohup /usr/bin/sox $fileName $outputFile trim $audioIn $duration gain 8 >/dev/null 2>&1 &");
+exec("nohup php audioProcessor.php $audioId $fileName $outputFile $audioIn $duration 8 >/dev/null 2>&1 &");
+//exec("nohup /usr/bin/sox $fileName $outputFile trim $audioIn $duration gain 8 >/dev/null 2>&1 &");
 
 //exec("nohup /usr/bin/sox $outputFile $gainFile gain 10 >/dev/null 2>&1 &");
 ?>
