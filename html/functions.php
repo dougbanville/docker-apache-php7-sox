@@ -50,8 +50,6 @@ function s3Upload($file, $bucketName)
     } else {
         //echo "Couldn't delete temp file";
     }
-
-    return $newFileName;
-
+    return "https://s3-eu-west-1.amazonaws.com/" . $bucketName . "/" . $newFileName;
 }
 ?>
