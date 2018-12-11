@@ -37,8 +37,8 @@ saveFileFromUrl($url,$fileName);
 
 //create the reponse
 $json = array('audioId'=>$audioId,'fileName' => $fileName, 'outputFile' =>$outputFile, 'audioIn' => $audioIn, 'duration' => $duration);
-
-echo $_GET['callback'] . '('.json_encode($json).')';// Actual response that will be sent to the user
+$json = json_encode($json);
+echo $_GET['callback'] . '('.$json.')';// Actual response that will be sent to the user
 //run it as exec the client can go about their business
 exec("nohup php audioProcessor.php $audioId $fileName $outputFile $audioIn $duration 8 >/dev/null 2>&1 &");
 //exec("nohup /usr/bin/sox $fileName $outputFile trim $audioIn $duration gain 8 >/dev/null 2>&1 &");

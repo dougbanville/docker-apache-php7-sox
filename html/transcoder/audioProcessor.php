@@ -29,9 +29,17 @@ $db = $firebase->getDatabase();
 $db->getReference('audioclips/'.$audioId.'/publishStatus')->set("complete");
 $db->getReference('audioclips/'.$audioId.'/awsaudio')->set($newFileName);
 
+$siteId = 1322;
+$radiomanid = time(); //date();
+$modifydate = time();
+$slug = "TW-DB-Test";
+$title = "TW-DB-Test2";
+$fieldTitle = "TW-DB-Test";
+
+$clipperFileName = getClipperFileName($siteId, $radiomanid, $modifydate, $slug, $title, $fieldTitle);
+
+$db->getReference('audioclips/'.$audioId.'/clipperFilename')->set($clipperFileName);
 
 $fp = fopen('log.txt', 'w');
-fwrite($fp, "save $newFileName");
+fwrite($fp, "save $newFileName clipper file name: $clipperFileName");
 fclose($fp);
-
-

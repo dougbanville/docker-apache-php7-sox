@@ -28,7 +28,8 @@ RUN apt-get update && \
       sox \
       libsox-fmt-mp3 \
       lame \
-      php-curl
+      php-curl \
+      vim
 
 COPY apache_default /etc/apache2/sites-available/000-default.conf
 COPY run /usr/local/bin/run
